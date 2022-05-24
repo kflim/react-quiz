@@ -31,7 +31,7 @@ export default function QuestionPage() {
         return txt.value;
     }
 
-    function setNewQuestionData() {
+    function createNewQuestionData() {
         fetch("https://opentdb.com/api.php?amount=10")
         .then(res => res.json())
         .then(data => generateNewQuestionData(data.results))
@@ -39,7 +39,7 @@ export default function QuestionPage() {
     }
 
     useEffect(() => {
-        setNewQuestionData()
+        createNewQuestionData()
     }, [])
 
     function selectAnswer(questionId, answer) {
@@ -73,7 +73,7 @@ export default function QuestionPage() {
     function toggleMode() {
         if (hasChecked) {
             toggleHasChecked()
-            setNewQuestionData()
+            createNewQuestionData()
         } else {
             toggleHasChecked()
             setQuestionData(oldQuestionData => oldQuestionData.map(oldData => {
